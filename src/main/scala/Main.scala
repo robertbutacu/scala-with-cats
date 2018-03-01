@@ -1,11 +1,11 @@
-import printable.library.{Cat, Printable}
-import printable.library.PrintableInstances._
-import printable.library.PrintableSyntax._
+import printable.library.Cat
+import printable.library.Cat.catShow
+import cats.syntax.eq._
 
 object Main extends App {
-  val sophie = Cat("Sophie", 15, "red")
+  val sophie: Cat = Cat("Sophie", 15, "red")
+  val eva: Cat = Cat("Eva", 10, "blue")
 
-  sophie.print
-
-  Printable.print(sophie)
+  println(sophie === eva)
+  println(sophie === sophie)
 }
