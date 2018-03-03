@@ -1,18 +1,13 @@
+import cats.Monoid
 import printable.library.Cat
 import printable.library.Cat.catShow
-import cats.syntax.eq._
-import monoids.semigroups.Monoid
-import monoids.semigroups.Monoid.implicitAndBoolean
-import monoids.semigroups.Monoid.implicitSetMonoid
+import cats.instances.list._
+import cats.instances.int._
+import cats.syntax.semigroup._
 
 object Main extends App {
-  val sophie: Cat = Cat("Sophie", 15, "red")
-  val eva: Cat = Cat("Eva", 10, "blue")
 
-  println(sophie === eva)
-  println(sophie === sophie)
+  def add[A: Monoid](l: List[A]): A = l.foldRight(Monoid[A].empty)((curr, acc) => curr |+| acc)
 
-  println(Monoid[Boolean].combine(true, false))
-
-  println(Monoid[Set[Int]].combine(Set(1, 2, 3), Set(4, 4, 5, 6)))
+  println(add(List(1,2,3,4,5)))
 }
