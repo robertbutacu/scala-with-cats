@@ -15,5 +15,5 @@ object Main extends App {
 
   println(add[Option[Int]](List(1.some,2.some,3.some,4.some,5.some, none)))
 
-  println(Monoid.combine(Order(2.0, 3), Order(5.0,4)))
+  println(Order(2.0, 3) |+| Order(4.0, 5))
 }
